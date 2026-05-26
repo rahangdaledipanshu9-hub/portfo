@@ -304,10 +304,18 @@
     if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            const name    = qs('#name').value.trim();
-            const email   = qs('#email').value.trim();
-            const subject = qs('#subject').value.trim();
-            const message = qs('#message').value.trim();
+            const nameEl    = qs('#name');
+            const emailEl   = qs('#email');
+            const subjectEl = qs('#subject');
+            const messageEl = qs('#message');
+            if (!nameEl || !emailEl || !subjectEl || !messageEl) {
+                showToast('Form elements not found. Please refresh the page.', 'error');
+                return;
+            }
+            const name    = nameEl.value.trim();
+            const email   = emailEl.value.trim();
+            const subject = subjectEl.value.trim();
+            const message = messageEl.value.trim();
             if (!name || !email || !subject || !message) {
                 showToast('Please fill in all fields.', 'error');
                 return;
